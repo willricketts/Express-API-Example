@@ -32,26 +32,18 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-//ROUTES
-
-//index
-app.get('/', routes.index);
+//GENERAL ROUTES
+app.get('/', routes.index); //index
 
 //USER ROUTES
-//get
-app.get('/users', user.list);
-app.get('/users/:name', user.find);
+app.get('/users', user.list);                   //get all
+app.get('/users/:name', user.find);             //get one
+app.post('/users/create', user.create);         //create
 
-//create
-app.post('/users/create', user.create);
-
-//PHOTOS
-//get all
-app.get('/photos', photo.list);
-//get one
-app.get('/users/:owner/photos', photo.find);
-//create
-app.post('/photos/create', photo.create);
+//PHOTO ROUTES
+app.get('/photos', photo.list);                 //get all
+app.get('/users/:owner/photos', photo.find);    //get one
+app.post('/photos/create', photo.create);       //create
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
