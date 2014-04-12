@@ -1,7 +1,3 @@
-
-/*
- * GET users listing.
- */
 var db = require('monk')('localhost/apex');
 var users = db.get('user')
 
