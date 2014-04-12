@@ -1,5 +1,23 @@
-var db = require('monk')('localhost/apex');
-var photo = db.get('photo')
+//var db = require('monk')('localhost/apex');
+//var photo = db.get('photo')
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/apex');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log("DB Connection Open");
+});
+
+var photoSchema = mongoose.Schema({
+    contenturl: String,
+    owner: String,
+    latitude: String,
+    longitude: String
+});
+
+var photo = mongoose.model('photo', photoSchema)
 
 exports.list = function(req, res){
     photo.find({}, function(e, docs){
@@ -15,9 +33,9 @@ exports.find = function(req, res){
 };
 
 exports.create = function(req, res) {
-    console.log(req.query);
-    photo.insert(req.query, function (err, doc) {
-        if (err) throw err;
+    var newPhoto = new photo(req.query);
+    newPhoto.save(function (err, newPhoto, numberAffected) {
+      if (err) console.log(err);
     });
     res.end();
 }

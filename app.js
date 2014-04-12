@@ -12,6 +12,8 @@ var path = require('path');
 var mongodb = require('mongodb');
 var app = express();
 var url = require('url');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/apex');
 
 //DB stuff
 
