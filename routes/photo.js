@@ -1,16 +1,23 @@
 var db = require('monk')('localhost/apex');
-var photos = db.get('photo')
+var photo = db.get('photo')
 
-exports.listphotos = function(req, res){
-    photos.find({}, function(e, docs){
+exports.list = function(req, res){
+    photo.find({}, function(e, docs){
         res.json(docs);
     });
-
 };
 
-exports.findphoto = function(req, res){
+exports.find = function(req, res){
     var name = req.params.owner;
-    photos.find({owner: name}, function(e, docs){
+    photo.find({owner: name}, function(e, docs){
         res.json(docs);
     });
 };
+
+exports.create = function(req, res) {
+    console.log(req.query);
+    photo.insert(req.query, function (err, doc) {
+        if (err) throw err;
+    });
+    res.end();
+}

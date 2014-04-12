@@ -9,7 +9,6 @@ exports.list = function(req, res){
   users.find({}, function(e, docs){
       res.json(docs);
   });
-
 };
 
 exports.find = function(req, res){
@@ -18,3 +17,11 @@ exports.find = function(req, res){
       res.json(docs);
   });
 };
+
+exports.create = function(req, res) {
+    console.log(req.query);
+    users.insert(req.query, function (err, doc) {
+        if (err) throw err;
+    });
+    res.end();
+}

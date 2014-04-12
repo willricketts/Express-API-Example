@@ -11,6 +11,7 @@ var http = require('http');
 var path = require('path');
 var mongodb = require('mongodb');
 var app = express();
+var url = require('url');
 
 //DB stuff
 
@@ -31,12 +32,26 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+//ROUTES
+
+//index
 app.get('/', routes.index);
+
+//USER ROUTES
+//get
 app.get('/users', user.list);
 app.get('/users/:name', user.find);
 
-app.get('/photos', photo.listphotos);
-app.get('/users/:owner/photos', photo.findphoto);
+//create
+app.post('/users/create', user.create);
+
+//PHOTOS
+//get all
+app.get('/photos', photo.list);
+//get one
+app.get('/users/:owner/photos', photo.find);
+//create
+app.post('/photos/create', photo.create);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
