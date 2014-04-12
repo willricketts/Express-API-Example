@@ -33,7 +33,7 @@ if ('development' == app.get('env')) {
 }
 
 //GENERAL ROUTES
-app.get('/', routes.index); //index
+app.get('/', routes.index);                     //index
 
 //USER ROUTES
 app.get('/users', user.list);                   //get all
