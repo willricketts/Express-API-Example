@@ -1,8 +1,4 @@
-
-/*
- * GET home page.
- */
-
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  var up = { "apiversion": "1.0" };
+  res.json(up);
 };
