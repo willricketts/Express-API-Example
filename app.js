@@ -35,17 +35,21 @@ if ('development' == app.get('env')) {
 }
 
 //GENERAL ROUTES
-app.get('/', routes.index);                     //index
+app.get('/', routes.index);                       //index
 
 //USER ROUTES
-app.get('/users', user.list);                   //get all
-app.get('/users/:name', user.find);             //get one
-app.post('/users/create', user.create);         //create
+app.get('/users', user.list);                     //get all
+app.get('/users/:name', user.find);               //get one
+app.post('/users/create', user.create);           //create
+app.put('/users/:name/update', user.update);      //update
+app.delete('/users/:name/delete', user.delete);   //delete
 
 //PHOTO ROUTES
-app.get('/photos', photo.list);                 //get all
-app.get('/users/:owner/photos', photo.find);    //get one
-app.post('/photos/create', photo.create);       //create
+app.get('/photos', photo.list);                   //get all
+app.get('/users/:owner/photos', photo.find);      //get one
+app.post('/photos/create', photo.create);         //create
+app.put('/users/:owner/update', photo.update);    //update
+app.delete('/users/:owner/delete', photo.delete); //delete
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

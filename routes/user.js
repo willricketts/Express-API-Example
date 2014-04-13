@@ -2,7 +2,6 @@
 //var users = db.get('user')
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/apex');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -37,4 +36,30 @@ exports.create = function(req, res) {
       if (err) console.log(err);
     });
     res.end();
-}
+};
+
+exports.update = function(req, res) {
+    var b = req.query;
+    var query = { name: req.params.name };
+    user.findOneAndUpdate(query, { name: b.name, age: b.age, email: b.email}, function(err, docs) {
+      if (err) {
+        res.json(err);
+      }
+      else {
+        res.json(docs);
+      };
+    });
+};
+
+exports.delete = function(req, res) {
+  var b = req.query;
+  var query = { name: req.params.name };
+  user.findOneAndRemove(query, function(err, docs){
+    if(err){
+      throw err;
+    }
+    else {
+      res.json(docs);
+    };
+  });
+};
