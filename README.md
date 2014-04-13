@@ -4,18 +4,29 @@ This is simply a tinker with a monk/mongodb/expressjs REST API. Nothing special 
 
 #Routes
 ###GENERAL ROUTES
-/                          //index   GET  
+get index - GET
+    /
 
 ###USER ROUTES
-/users                     //get all GET  
-/users/:name               //get one GET  
-/users/create              //create  POST  
-/users/:name/update        //update  PUT  
-/users/:name/delete        //delete  DELETE  
+get all - GET  
+  /users  
+get one - GET  
+  /users/:name  
+create  - POST  
+  /users/create  
+update  - PUT  
+  /users/:name/update  
+delete  - DELETE  
+  /users/:name/delete  
 
 ###PHOTO ROUTES
-/photos                    //get all GET  
-/users/:owner/photos       //get one GET  
-/photos/create             //create  POST  
-/users/:owner/update       //update  PUT  
-/users/:owner/delete       //delete  DELETE  
+get all - GET  
+  /photos  
+get one - GET  
+  /users/:owner/photos  
+create one - POST  
+  /photos/create  
+update one - PUT  
+  /users/:owner/update  
+delete one - DELETE  
+  /users/:owner/delete  
